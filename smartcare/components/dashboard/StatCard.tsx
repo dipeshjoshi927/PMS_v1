@@ -12,11 +12,11 @@ interface StatCardProps {
 }
 
 const colorMap = {
-  blue:   { bg: "bg-blue-50",   icon: "text-blue-600",   value: "text-blue-700"   },
-  green:  { bg: "bg-green-50",  icon: "text-green-600",  value: "text-green-700"  },
-  orange: { bg: "bg-orange-50", icon: "text-orange-600", value: "text-orange-700" },
-  purple: { bg: "bg-purple-50", icon: "text-purple-600", value: "text-purple-700" },
-  red:    { bg: "bg-red-50",    icon: "text-red-600",    value: "text-red-700"    },
+  blue:   { bg: "bg-cyan-50",    icon: "text-cyan-600",    value: "text-slate-950" },
+  green:  { bg: "bg-emerald-50", icon: "text-emerald-600", value: "text-slate-950" },
+  orange: { bg: "bg-amber-50",   icon: "text-amber-600",   value: "text-slate-950" },
+  purple: { bg: "bg-violet-50",  icon: "text-violet-600",  value: "text-slate-950" },
+  red:    { bg: "bg-red-50",     icon: "text-red-600",     value: "text-slate-950" },
 };
 
 export default function StatCard({
@@ -30,12 +30,12 @@ export default function StatCard({
   const c = colorMap[color];
 
   return (
-    <Card className="border-0 shadow-sm hover:shadow-md transition-shadow">
+    <Card className="transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/20 hover:shadow-clinical">
       <CardContent className="pt-6 pb-5">
         <div className="flex items-start justify-between">
           <div className="space-y-1">
-            <p className="text-sm font-medium text-slate-500">{title}</p>
-            <p className={cn("text-3xl font-bold", c.value)}>
+            <p className="text-sm font-semibold text-slate-500">{title}</p>
+            <p className={cn("text-3xl font-bold tracking-tight", c.value)}>
               {loading ? (
                 <span className="inline-block w-12 h-8 bg-slate-100 rounded animate-pulse" />
               ) : (
@@ -50,7 +50,7 @@ export default function StatCard({
               )}
             </p>
           </div>
-          <div className={cn("p-3 rounded-xl", c.bg)}>
+          <div className={cn("rounded-lg p-3", c.bg)}>
             <Icon className={cn("w-6 h-6", c.icon)} />
           </div>
         </div>

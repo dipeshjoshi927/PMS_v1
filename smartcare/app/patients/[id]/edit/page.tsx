@@ -43,9 +43,9 @@ export default function EditPatientPage() {
   if (loading) {
     return (
       <DashboardLayout>
-        <div className="p-6 lg:p-8 space-y-4">
+        <div className="clinical-page">
           <Skeleton className="h-8 w-48" />
-          <Skeleton className="h-96 rounded-xl" />
+          <Skeleton className="h-96 rounded-lg" />
         </div>
       </DashboardLayout>
     );
@@ -54,13 +54,13 @@ export default function EditPatientPage() {
   return (
     <DashboardLayout>
       <Header title="Edit Patient" subtitle={patient?.name} />
-      <div className="p-6 lg:p-8">
+      <div className="clinical-page">
         <Link href={`/patients/${id}`} className="inline-block mb-6">
           <Button variant="outline" size="sm" className="gap-2">
             <ArrowLeft className="w-4 h-4" /> Back
           </Button>
         </Link>
-        <Card className="border-0 shadow-sm max-w-lg">
+        <Card className="max-w-lg">
           <CardHeader>
             <CardTitle className="text-base">Edit Patient Details</CardTitle>
           </CardHeader>

@@ -39,7 +39,7 @@ export default function PrintPrescription({
           </div>
         </div>
 
-        <div className="mb-6 p-4 bg-slate-50 rounded">
+        <div className="mb-6 rounded border border-slate-200 bg-slate-50 p-4">
           <h2 className="font-semibold text-slate-700 mb-2">Patient Information</h2>
           <div className="grid grid-cols-2 gap-2 text-sm">
             <div>
@@ -66,7 +66,7 @@ export default function PrintPrescription({
             <span className="text-3xl font-serif text-slate-700">℞</span>
             <h2 className="font-semibold text-slate-700 text-lg">Medications</h2>
           </div>
-          <div className="p-4 border border-slate-200 rounded min-h-32">
+          <div className="min-h-32 rounded border border-slate-200 p-4">
             <p className="whitespace-pre-line text-sm leading-relaxed">
               {prescription.medications}
             </p>
@@ -76,7 +76,7 @@ export default function PrintPrescription({
         {prescription.instructions && (
           <div className="mb-6">
             <h2 className="font-semibold text-slate-700 mb-2">Instructions</h2>
-            <p className="text-sm text-slate-600 whitespace-pre-line leading-relaxed p-4 border border-slate-200 rounded">
+            <p className="rounded border border-slate-200 p-4 text-sm leading-relaxed text-slate-600 whitespace-pre-line">
               {prescription.instructions}
             </p>
           </div>

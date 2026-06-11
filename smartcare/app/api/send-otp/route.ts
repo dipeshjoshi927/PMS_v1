@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { otpEmail } from "@/lib/email";
-
-const otpStore = new Map<string, { code: string; expires: number }>();
+import { otpStore } from "@/lib/otp-store";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -58,5 +57,3 @@ export async function POST(req: NextRequest) {
       );
     }
 }
-
-export { otpStore };

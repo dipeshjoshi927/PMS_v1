@@ -18,7 +18,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getPrescriptions, createPrescription } from "@/lib/prescriptions";
 import { getPatients } from "@/lib/patients";
 import { useToast } from "@/components/ui/use-toast";
-import { Plus, Search, ClipboardList } from "lucide-react";
+import { Plus, Search, FilePlus2 } from "lucide-react";
 import type { Prescription, Patient } from "@/types";
 
 export default function PrescriptionsPage() {
@@ -91,10 +91,11 @@ export default function PrescriptionsPage() {
         title="Prescriptions"
         subtitle={`${prescriptions.length} total prescriptions`}
       />
-      <div className="p-6 lg:p-8 space-y-5">
+      <div className="clinical-page">
 
-        <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
-          <div className="relative flex-1 max-w-sm">
+        <div className="clinical-panel p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="relative w-full sm:max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <Input
               className="pl-9"
@@ -105,13 +106,13 @@ export default function PrescriptionsPage() {
           </div>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button className="gap-2 shrink-0">
+              <Button className="shrink-0 gap-2">
                 <Plus className="w-4 h-4" /> New Prescription
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-lg">
+            <DialogContent className="sm:max-w-2xl">
               <DialogHeader>
-                <DialogTitle>Write New Prescription</DialogTitle>
+                <DialogTitle className="text-xl">Write New Prescription</DialogTitle>
               </DialogHeader>
               <PrescriptionForm
                 patients={patients}
@@ -120,21 +121,25 @@ export default function PrescriptionsPage() {
               />
             </DialogContent>
           </Dialog>
+          </div>
         </div>
 
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton key={i} className="h-44 rounded-xl" />
+              <Skeleton key={i} className="h-44 rounded-lg" />
             ))}
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-20 text-slate-400">
-            <ClipboardList className="w-12 h-12 mx-auto mb-3 opacity-20" />
-            <p className="text-lg font-medium">No prescriptions found</p>
+          <div className="empty-state">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-violet-50 text-violet-600">
+              {search ? <Search className="h-6 w-6" /> : <FilePlus2 className="h-6 w-6" />}
+            </div>
+            <p className="text-lg font-semibold text-slate-900">No prescriptions found</p>
+            <p className="mt-1 text-sm">Clinical medication records will appear here.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
             {filtered.map((pr) => (
               <PrescriptionCard
                 key={pr.$id}

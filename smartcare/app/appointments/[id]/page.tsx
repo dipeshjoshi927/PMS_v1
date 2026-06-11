@@ -73,9 +73,9 @@ export default function AppointmentDetailPage() {
   if (loading) {
     return (
       <DashboardLayout>
-        <div className="p-6 lg:p-8 space-y-4">
+        <div className="clinical-page">
           <Skeleton className="h-8 w-48" />
-          <Skeleton className="h-64 rounded-xl" />
+          <Skeleton className="h-64 rounded-lg" />
         </div>
       </DashboardLayout>
     );
@@ -86,7 +86,7 @@ export default function AppointmentDetailPage() {
   return (
     <DashboardLayout>
       <Header title="Appointment Details" />
-      <div className="p-6 lg:p-8 space-y-6">
+      <div className="clinical-page">
 
         <div className="flex items-center justify-between">
           <Link href="/appointments">
@@ -106,7 +106,7 @@ export default function AppointmentDetailPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          <Card className="border-0 shadow-sm">
+          <Card className="">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold">
                 Appointment Info
@@ -159,7 +159,7 @@ export default function AppointmentDetailPage() {
           </Card>
 
           {patient && (
-            <Card className="border-0 shadow-sm">
+            <Card className="">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-semibold">
                   Patient Info

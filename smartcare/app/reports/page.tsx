@@ -59,7 +59,7 @@ export default function ReportsPage() {
   return (
     <DashboardLayout>
       <Header title="Reports" subtitle="Summary statistics and analytics" />
-      <div className="p-6 lg:p-8 space-y-6">
+      <div className="clinical-page">
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
@@ -94,7 +94,7 @@ export default function ReportsPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-          <Card className="border-0 shadow-sm">
+          <Card className="">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold">
                 Appointment Status Breakdown
@@ -140,7 +140,7 @@ export default function ReportsPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-sm">
+          <Card className="">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-semibold">
                 Appointments — Last 6 Months
@@ -186,7 +186,7 @@ export default function ReportsPage() {
 
         </div>
 
-        <Card className="border-0 shadow-sm">
+        <Card className="">
           <CardHeader className="pb-3">
             <CardTitle className="text-base font-semibold">
               Monthly Breakdown

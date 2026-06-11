@@ -69,7 +69,7 @@ export default function RiskPatientCard({
   };
 
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="">
       <CardContent className="pt-5 pb-4">
         <div className="flex items-start justify-between gap-3 mb-3">
           <div className="flex items-center gap-2.5">

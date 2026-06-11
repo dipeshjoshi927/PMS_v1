@@ -12,7 +12,7 @@ export default function MedicalHistory({ history }: MedicalHistoryProps) {
 
   if (!history) {
     return (
-      <div className="p-4 bg-slate-50 rounded-xl text-sm text-slate-400 flex items-center gap-2">
+      <div className="p-4 bg-slate-50 rounded-lg text-sm text-slate-400 flex items-center gap-2">
         <FileText className="w-4 h-4" />
         No medical history recorded
       </div>
@@ -26,7 +26,7 @@ export default function MedicalHistory({ history }: MedicalHistoryProps) {
     : history;
 
   return (
-    <div className="rounded-xl border border-slate-100 overflow-hidden">
+    <div className="rounded-lg border border-slate-100 overflow-hidden">
       <div className="px-4 py-3 bg-slate-50 border-b border-slate-100 flex items-center gap-2">
         <FileText className="w-4 h-4 text-slate-500" />
         <span className="text-sm font-medium text-slate-700">Medical History</span>

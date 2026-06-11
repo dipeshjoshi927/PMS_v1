@@ -46,21 +46,21 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="flex flex-col w-64 min-h-screen bg-slate-900 text-white shrink-0">
+    <aside className="flex min-h-screen w-72 shrink-0 flex-col border-r border-slate-200 bg-white text-slate-900 shadow-soft">
       {/* Logo / Header */}
-      <div className="flex items-center gap-3 px-6 py-5 border-b border-slate-700/60">
-        <div className="p-2 bg-blue-600 rounded-xl shadow-lg">
+      <div className="flex items-center gap-3 border-b border-slate-200 px-6 py-5">
+        <div className="rounded-lg bg-primary p-2 shadow-sm">
           <Heart className="w-5 h-5 text-white" />
         </div>
 
         <div>
           <h1 className="font-bold text-base leading-tight">SmartCare</h1>
-          <p className="text-xs text-slate-400">Hospital Management</p>
+          <p className="text-xs text-slate-500">Patient Management</p>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 px-3 py-5 space-y-1">
+      <nav className="flex-1 space-y-1 px-3 py-5">
         {navItems.map(({ href, label, icon: Icon }) => {
           const active =
             pathname === href || pathname.startsWith(`${href}/`);
@@ -70,10 +70,10 @@ export default function Sidebar() {
               key={href}
               href={href}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
+                "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold transition-all duration-200",
                 active
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                  ? "bg-primary text-white shadow-sm"
+                  : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
               )}
             >
               <Icon className="w-4 h-4 shrink-0" />
@@ -89,15 +89,15 @@ export default function Sidebar() {
       </nav>
 
       {/* Logout */}
-      <div className="px-3 pt-4 pb-5 border-t border-slate-700/60">
+      <div className="border-t border-slate-200 px-3 pb-5 pt-4">
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-all duration-150"
+          className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-semibold text-slate-600 transition-all duration-200 hover:bg-red-50 hover:text-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500/30"
         >
           <LogOut className="w-4 h-4 shrink-0" />
           <span>Sign out</span>
         </button>
       </div>
-    </div>
+    </aside>
   );
 }

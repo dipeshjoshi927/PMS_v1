@@ -29,7 +29,7 @@ import {
 } from "@/lib/appointments";
 import { getPatients } from "@/lib/patients";
 import { useToast } from "@/components/ui/use-toast";
-import { Plus, Search, Calendar } from "lucide-react";
+import { Plus, Search, CalendarCheck2 } from "lucide-react";
 import type { Appointment, Patient } from "@/types";
 
 async function notifyPatient(
@@ -131,10 +131,11 @@ export default function AppointmentsPage() {
         title="Appointments"
         subtitle={`${appointments.length} total appointments`}
       />
-      <div className="p-6 lg:p-8 space-y-5">
+      <div className="clinical-page">
 
-        <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
-          <div className="flex flex-1 gap-2 max-w-lg">
+        <div className="clinical-panel p-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex w-full flex-col gap-2 sm:flex-row lg:max-w-2xl">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <Input
@@ -145,7 +146,7 @@ export default function AppointmentsPage() {
               />
             </div>
             <Select value={statusFilter} onValueChange={setStatusFilter}>
-              <SelectTrigger className="w-36">
+              <SelectTrigger className="w-full sm:w-40">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -158,13 +159,13 @@ export default function AppointmentsPage() {
           </div>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button className="gap-2 shrink-0">
+              <Button className="shrink-0 gap-2">
                 <Plus className="w-4 h-4" /> Book Appointment
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-lg">
+            <DialogContent className="sm:max-w-2xl">
               <DialogHeader>
-                <DialogTitle>Book New Appointment</DialogTitle>
+                <DialogTitle className="text-xl">Book New Appointment</DialogTitle>
               </DialogHeader>
               <AppointmentForm
                 patients={patients}
@@ -173,28 +174,32 @@ export default function AppointmentsPage() {
               />
             </DialogContent>
           </Dialog>
+          </div>
         </div>
 
         {loading ? (
           <div className="space-y-3">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Skeleton key={i} className="h-20 rounded-xl" />
+              <Skeleton key={i} className="h-20 rounded-lg" />
             ))}
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-20 text-slate-400">
-            <Calendar className="w-12 h-12 mx-auto mb-3 opacity-20" />
-            <p className="text-lg font-medium">No appointments found</p>
+          <div className="empty-state">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
+              {search ? <Search className="h-6 w-6" /> : <CalendarCheck2 className="h-6 w-6" />}
+            </div>
+            <p className="text-lg font-semibold text-slate-900">No appointments found</p>
+            <p className="mt-1 text-sm">Booked visits and filtered results will appear here.</p>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="grid gap-3">
             {filtered.map((a) => (
               <AppointmentCard
                 key={a.$id}
                 appointment={a}
                 patientName={patientMap[a.patient_id] ?? "Unknown"}
-                onStatusChange={() =>
-                  handleStatusChange(a.$id, a.status, a.patient_id)
+                onStatusChange={(status) =>
+                  handleStatusChange(a.$id, status, a.patient_id)
                 }
               />
             ))}

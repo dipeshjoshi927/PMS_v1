@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Patient } from "@/types";
 import { Card, CardContent } from "@/components/ui/card";
-import { User, Phone, MapPin, ChevronRight } from "lucide-react";
+import { User, Phone, MapPin, ChevronRight, Mail } from "lucide-react";
 
 interface PatientCardProps {
   patient: Patient;
@@ -16,18 +16,18 @@ const genderColor = {
 export default function PatientCard({ patient }: PatientCardProps) {
   return (
     <Link href={`/patients/${patient.$id}`}>
-      <Card className="border-0 shadow-sm hover:shadow-md transition-all duration-150 cursor-pointer group">
-        <CardContent className="pt-5 pb-4">
+      <Card className="group cursor-pointer transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-clinical">
+        <CardContent className="pb-4 pt-5">
           <div className="flex items-start gap-3">
-            <div className="p-2.5 bg-blue-50 rounded-xl shrink-0">
-              <User className="w-5 h-5 text-blue-600" />
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-cyan-50 text-primary">
+              <User className="w-5 h-5" />
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-start justify-between gap-2">
-                <h3 className="font-semibold text-slate-900 truncate group-hover:text-blue-600 transition-colors">
+                <h3 className="truncate font-semibold text-slate-950 transition-colors group-hover:text-primary">
                   {patient.name}
                 </h3>
-                <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-blue-400 shrink-0 mt-0.5 transition-colors" />
+                <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-slate-300 transition-colors group-hover:text-primary" />
               </div>
               <div className="flex items-center gap-2 mt-1">
                 <span className="text-sm text-slate-500">{patient.age} yrs</span>
@@ -35,22 +35,28 @@ export default function PatientCard({ patient }: PatientCardProps) {
                   {patient.gender}
                 </span>
               </div>
-              <div className="mt-2 space-y-1">
+              <div className="mt-3 space-y-1.5">
                 {patient.phone && (
-                  <p className="text-xs text-slate-400 flex items-center gap-1.5">
+                  <p className="flex items-center gap-1.5 text-xs text-slate-500">
                     <Phone className="w-3 h-3" />
                     {patient.phone}
                   </p>
                 )}
+                {patient.email && (
+                  <p className="flex items-center gap-1.5 truncate text-xs text-slate-500">
+                    <Mail className="h-3 w-3 shrink-0" />
+                    {patient.email}
+                  </p>
+                )}
                 {patient.address && (
-                  <p className="text-xs text-slate-400 flex items-center gap-1.5 truncate">
+                  <p className="flex items-center gap-1.5 truncate text-xs text-slate-500">
                     <MapPin className="w-3 h-3 shrink-0" />
                     {patient.address}
                   </p>
                 )}
               </div>
               {patient.medical_history && (
-                <p className="text-xs text-slate-400 mt-2 line-clamp-2 border-t border-slate-100 pt-2">
+                <p className="mt-3 line-clamp-2 border-t border-slate-100 pt-3 text-xs leading-5 text-slate-500">
                   {patient.medical_history}
                 </p>
               )}

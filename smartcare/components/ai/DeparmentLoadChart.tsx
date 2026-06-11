@@ -33,7 +33,7 @@ export default function DepartmentLoadChart({
   const max = Math.max(...predictions.map((p) => p.predicted_count), 1);
 
   return (
-    <Card className="border-0 shadow-sm">
+    <Card className="">
       <CardHeader className="pb-3">
         <CardTitle className="text-base font-semibold">
           Predicted department load — next 7 days

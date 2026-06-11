@@ -90,11 +90,11 @@ export default function ClinicSummaryPage() {
         title="Clinic Summary"
         subtitle="AI-generated monthly clinic report"
       />
-      <div className="p-6 lg:p-8">
+      <div className="clinical-page">
         <div className="max-w-4xl mx-auto space-y-6">
 
           {/* Generate panel */}
-          <Card className="border-0 shadow-sm">
+          <Card className="">
             <CardContent className="pt-6 pb-5">
               <div className="flex flex-col sm:flex-row items-start sm:items-end gap-4">
                 <div className="flex-1">
@@ -128,7 +128,7 @@ export default function ClinicSummaryPage() {
 
           {/* Loading state */}
           {loading && (
-            <Card className="border-0 shadow-sm">
+            <Card className="">
               <CardContent className="py-16 text-center">
                 <Loader2 className="w-8 h-8 animate-spin text-blue-500 mx-auto mb-3" />
                 <p className="text-slate-600 font-medium">Analyzing clinic data...</p>
@@ -141,7 +141,7 @@ export default function ClinicSummaryPage() {
 
           {/* Empty state */}
           {!loading && !summary && (
-            <Card className="border-0 shadow-sm">
+            <Card className="">
               <CardContent className="py-16 text-center">
                 <FileBarChart className="w-10 h-10 text-slate-300 mx-auto mb-3" />
                 <p className="text-slate-500 font-medium">No summary generated yet</p>
@@ -162,7 +162,7 @@ export default function ClinicSummaryPage() {
               />
 
               {/* Email section */}
-              <Card className="border-0 shadow-sm">
+              <Card className="">
                 <CardContent className="pt-5 pb-5">
                   <p className="text-sm font-medium text-slate-700 mb-3">
                     Email this report

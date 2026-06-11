@@ -69,10 +69,10 @@ export default function PatientDetailPage() {
   if (loading) {
     return (
       <DashboardLayout>
-        <div className="p-6 lg:p-8 space-y-4">
+        <div className="clinical-page">
           <Skeleton className="h-8 w-48" />
-          <Skeleton className="h-48 rounded-xl" />
-          <Skeleton className="h-64 rounded-xl" />
+          <Skeleton className="h-48 rounded-lg" />
+          <Skeleton className="h-64 rounded-lg" />
         </div>
       </DashboardLayout>
     );
@@ -83,7 +83,7 @@ export default function PatientDetailPage() {
   return (
     <DashboardLayout>
       <Header title={patient.name} subtitle="Patient record" />
-      <div className="p-6 lg:p-8 space-y-6">
+      <div className="clinical-page">
 
         <div className="flex items-center justify-between">
           <Link href="/patients">
@@ -113,7 +113,7 @@ export default function PatientDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           <div className="space-y-4">
-            <Card className="border-0 shadow-sm">
+            <Card className="">
               <CardHeader className="pb-3">
                 <CardTitle className="text-base font-semibold flex items-center gap-2">
                   <User className="w-4 h-4 text-blue-500" /> Personal Info
@@ -162,7 +162,7 @@ export default function PatientDetailPage() {
 
           <div className="lg:col-span-2 space-y-4">
 
-            <Card className="border-0 shadow-sm">
+            <Card className="">
               <CardHeader className="pb-3 flex flex-row items-center justify-between">
                 <CardTitle className="text-base font-semibold flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-green-500" />
@@ -199,7 +199,7 @@ export default function PatientDetailPage() {
               </CardContent>
             </Card>
 
-            <Card className="border-0 shadow-sm">
+            <Card className="">
               <CardHeader className="pb-3 flex flex-row items-center justify-between">
                 <CardTitle className="text-base font-semibold flex items-center gap-2">
                   <FileText className="w-4 h-4 text-purple-500" />

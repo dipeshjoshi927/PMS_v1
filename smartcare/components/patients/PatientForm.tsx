@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Loader2 } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 import type { Patient } from "@/types";
 
 interface PatientFormProps {
@@ -67,15 +67,18 @@ export default function PatientForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+        <div className="flex items-start gap-2 rounded-md border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700" role="alert">
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
           {error}
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-4">
-        <div className="col-span-2 space-y-1.5">
+      <section className="rounded-lg border border-slate-200 bg-slate-50/60 p-4">
+        <h3 className="mb-4 text-sm font-semibold text-slate-900">Patient identity</h3>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="field-group sm:col-span-2">
           <Label>Full Name *</Label>
           <Input
             placeholder="John Doe"
@@ -85,7 +88,7 @@ export default function PatientForm({
           />
         </div>
 
-        <div className="space-y-1.5">
+        <div className="field-group">
           <Label>Age *</Label>
           <Input
             type="number"
@@ -98,7 +101,7 @@ export default function PatientForm({
           />
         </div>
 
-        <div className="space-y-1.5">
+        <div className="field-group">
           <Label>Gender *</Label>
           <Select value={form.gender} onValueChange={(v) => set("gender", v)}>
             <SelectTrigger>
@@ -111,8 +114,13 @@ export default function PatientForm({
             </SelectContent>
           </Select>
         </div>
+        </div>
+      </section>
 
-        <div className="space-y-1.5">
+      <section className="rounded-lg border border-slate-200 bg-slate-50/60 p-4">
+        <h3 className="mb-4 text-sm font-semibold text-slate-900">Contact details</h3>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="field-group">
           <Label>Phone *</Label>
           <Input
             placeholder="+977XXXXXXXXXX"
@@ -122,7 +130,7 @@ export default function PatientForm({
           />
         </div>
 
-        <div className="space-y-1.5">
+        <div className="field-group">
           <Label>Email</Label>
           <Input
             type="email"
@@ -132,7 +140,7 @@ export default function PatientForm({
           />
         </div>
 
-        <div className="col-span-2 space-y-1.5">
+        <div className="field-group sm:col-span-2">
           <Label>Address</Label>
           <Input
             placeholder="Kathmandu, Nepal"
@@ -140,8 +148,11 @@ export default function PatientForm({
             onChange={(e) => set("address", e.target.value)}
           />
         </div>
+        </div>
+      </section>
 
-        <div className="col-span-2 space-y-1.5">
+      <section className="rounded-lg border border-slate-200 bg-slate-50/60 p-4">
+        <div className="field-group">
           <Label>Medical History</Label>
           <Textarea
             placeholder="Known conditions, allergies, previous surgeries..."
@@ -150,9 +161,9 @@ export default function PatientForm({
             onChange={(e) => set("medical_history", e.target.value)}
           />
         </div>
-      </div>
+      </section>
 
-      <div className="flex gap-3 pt-1">
+      <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row">
         <Button type="button" variant="outline" className="flex-1" onClick={onCancel}>
           Cancel
         </Button>

@@ -28,7 +28,7 @@ export default function PatientTable({ patients, onEdit }: PatientTableProps) {
   if (patients.length === 0) return null;
 
   return (
-    <div className="rounded-xl border border-slate-100 overflow-hidden bg-white shadow-sm">
+    <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-soft">
       <Table>
         <TableHeader>
           <TableRow className="bg-slate-50 hover:bg-slate-50">
@@ -42,7 +42,7 @@ export default function PatientTable({ patients, onEdit }: PatientTableProps) {
         </TableHeader>
         <TableBody>
           {patients.map((p) => (
-            <TableRow key={p.$id} className="hover:bg-slate-50/80">
+            <TableRow key={p.$id} className="hover:bg-cyan-50/40">
               <TableCell className="font-medium text-slate-900">{p.name}</TableCell>
               <TableCell className="text-slate-600">{p.age}</TableCell>
               <TableCell>
@@ -56,7 +56,7 @@ export default function PatientTable({ patients, onEdit }: PatientTableProps) {
               </TableCell>
               <TableCell className="text-right">
                 <div className="flex items-center justify-end gap-1">
-                  <Link href={`/patients/${p.$id}`}>
+                  <Link href={`/patients/${p.$id}`} aria-label={`View ${p.name}`}>
                     <Button size="sm" variant="ghost" className="h-8 w-8 p-0">
                       <Eye className="w-4 h-4" />
                     </Button>
@@ -67,6 +67,7 @@ export default function PatientTable({ patients, onEdit }: PatientTableProps) {
                       variant="ghost"
                       className="h-8 w-8 p-0"
                       onClick={() => onEdit(p)}
+                      aria-label={`Edit ${p.name}`}
                     >
                       <Pencil className="w-4 h-4" />
                     </Button>

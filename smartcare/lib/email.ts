@@ -63,22 +63,57 @@ function layout(content: string): string {
 }
 
 function infoBox(
-  bg:     string,
+  bg: string,
   border: string,
-  rows:   { label: string; value: string }[]
+  rows: { label: string; value: string }[]
 ): string {
   const rowsHtml = rows
     .map(
       (r) => `
-      <div style="display:flex;justify-content:space-between;padding:3px 0;">
-        <span style="font-size:13px;color:#64748b;">${r.label}</span>
-        <span style="font-size:13px;font-weight:600;color:#1e40af;">${r.value}</span>
+      <div
+        style="
+          display:flex;
+          align-items:flex-start;
+          gap:12px;
+          padding:8px 0;
+          border-bottom:1px solid rgba(0,0,0,0.05);
+        "
+      >
+        <span
+          style="
+            min-width:70px;
+            font-size:13px;
+            color:#64748b;
+            font-weight:500;
+          "
+        >
+          ${r.label}:
+        </span>
+
+        <span
+          style="
+            font-size:13px;
+            font-weight:600;
+            color:#0f172a;
+            flex:1;
+          "
+        >
+          ${r.value}
+        </span>
       </div>`
     )
     .join("");
 
   return `
-    <div style="background:${bg};border:1px solid ${border};border-radius:8px;padding:14px 18px;margin-bottom:20px;">
+    <div
+      style="
+        background:${bg};
+        border:1px solid ${border};
+        border-radius:10px;
+        padding:16px 18px;
+        margin-bottom:20px;
+      "
+    >
       ${rowsHtml}
     </div>
   `;
@@ -290,7 +325,7 @@ export function clinicSummaryEmail(data: {
 }): { subject: string; html: string } {
   const listHtml = (items: string[], color: string) =>
     items.map((i) =>
-      `<li style="margin-bottom:6px;font-size:13px;color:#334155;padding-left:4px;">${i}</li>`
+      `<li style="margin-bottom:6px;font-size:13px;color:${color};padding-left:4px;">${i}</li>`
     ).join("");
 
   const section = (title: string, icon: string, items: string[], bg: string, border: string) =>

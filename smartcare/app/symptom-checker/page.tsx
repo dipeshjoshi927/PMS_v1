@@ -18,7 +18,7 @@ export default function SymptomCheckerPage() {
         title="AI Symptom Checker"
         subtitle="Powered by Llama 3.3 70B via Groq"
       />
-      <div className="p-6 lg:p-8">
+      <div className="clinical-page">
         <div className="max-w-2xl mx-auto space-y-6">
 
           {/* Info cards */}
@@ -46,7 +46,7 @@ export default function SymptomCheckerPage() {
               ].map(({ icon: Icon, color, title, desc }) => (
                 <div
                   key={title}
-                  className="flex flex-col items-center text-center p-4 bg-white rounded-xl border border-slate-100 shadow-sm"
+                  className="flex flex-col items-center text-center p-4 bg-white rounded-lg border border-slate-100 shadow-sm"
                 >
                   <div className={`p-2 rounded-lg mb-2 ${color}`}>
                     <Icon className="w-4 h-4" />
@@ -59,7 +59,7 @@ export default function SymptomCheckerPage() {
           )}
 
           {/* Main card */}
-          <Card className="border-0 shadow-sm">
+          <Card className="">
             <CardHeader className="pb-4">
               <CardTitle className="text-lg font-semibold">
                 {result ? "Analysis results" : "Enter your symptoms"}

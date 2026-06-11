@@ -83,7 +83,7 @@ export default function AIDashboardPage() {
         title="AI Dashboard"
         subtitle="Risk analysis powered by Llama 3.3 70B"
       />
-      <div className="p-6 lg:p-8 space-y-6">
+      <div className="clinical-page">
 
         {/* Stats */}
         <AIDashboardStats
@@ -139,7 +139,7 @@ export default function AIDashboardPage() {
           {riskLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {Array.from({ length: 6 }).map((_, i) => (
-                <Skeleton key={i} className="h-48 rounded-xl" />
+                <Skeleton key={i} className="h-48 rounded-lg" />
               ))}
             </div>
           ) : filteredPatients.length === 0 ? (

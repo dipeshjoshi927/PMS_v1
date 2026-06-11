@@ -51,9 +51,9 @@ export default function PrescriptionDetailPage() {
   if (loading) {
     return (
       <DashboardLayout>
-        <div className="p-6 lg:p-8 space-y-4">
+        <div className="clinical-page">
           <Skeleton className="h-8 w-48" />
-          <Skeleton className="h-64 rounded-xl" />
+          <Skeleton className="h-64 rounded-lg" />
         </div>
       </DashboardLayout>
     );
@@ -64,7 +64,7 @@ export default function PrescriptionDetailPage() {
   return (
     <DashboardLayout>
       <Header title="Prescription Details" />
-      <div className="p-6 lg:p-8 space-y-6">
+      <div className="clinical-page">
 
         <div className="flex items-center justify-between no-print">
           <Link href="/prescriptions">
@@ -87,7 +87,7 @@ export default function PrescriptionDetailPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-          <Card className="border-0 shadow-sm">
+          <Card className="">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-semibold flex items-center gap-2">
                 <User className="w-4 h-4 text-blue-500" /> Patient
@@ -107,7 +107,7 @@ export default function PrescriptionDetailPage() {
           </Card>
 
           <div className="md:col-span-2 space-y-4">
-            <Card className="border-0 shadow-sm">
+            <Card className="">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-semibold flex items-center gap-2">
                   <FileText className="w-4 h-4 text-purple-500" /> Medications
@@ -121,7 +121,7 @@ export default function PrescriptionDetailPage() {
             </Card>
 
             {prescription.instructions && (
-              <Card className="border-0 shadow-sm">
+              <Card className="">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-sm font-semibold">
                     Instructions

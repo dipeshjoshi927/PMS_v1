@@ -56,7 +56,7 @@ export default function SymptomResult({ result, onReset }: SymptomResultProps) {
 
       {/* Urgency Banner */}
       <div className={cn(
-        "flex items-start gap-3 p-4 rounded-xl border",
+        "flex items-start gap-3 p-4 rounded-lg border",
         urgency.bg
       )}>
         <UrgIcon className="w-5 h-5 mt-0.5 shrink-0 text-current" />
@@ -74,10 +74,10 @@ export default function SymptomResult({ result, onReset }: SymptomResultProps) {
       </div>
 
       {/* Department */}
-      <Card className="border-0 shadow-sm">
+      <Card className="">
         <CardContent className="pt-5 pb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-blue-50 rounded-xl">
+            <div className="p-2.5 bg-blue-50 rounded-lg">
               <Building2 className="w-5 h-5 text-blue-600" />
             </div>
             <div>
@@ -89,7 +89,7 @@ export default function SymptomResult({ result, onReset }: SymptomResultProps) {
       </Card>
 
       {/* Possible Conditions */}
-      <Card className="border-0 shadow-sm">
+      <Card className="">
         <CardHeader className="pb-3">
           <CardTitle className="text-base font-semibold flex items-center gap-2">
             <Info className="w-4 h-4 text-slate-500" />
@@ -129,7 +129,7 @@ export default function SymptomResult({ result, onReset }: SymptomResultProps) {
 
       {/* Advice */}
       {result.advice && (
-        <Card className="border-0 shadow-sm">
+        <Card className="">
           <CardContent className="pt-5 pb-4">
             <div className="flex items-start gap-3">
               <div className="p-2 bg-green-50 rounded-lg">
@@ -147,7 +147,7 @@ export default function SymptomResult({ result, onReset }: SymptomResultProps) {
       )}
 
       {/* Disclaimer */}
-      <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl flex items-start gap-3">
+      <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg flex items-start gap-3">
         <AlertTriangle className="w-4 h-4 text-amber-600 mt-0.5 shrink-0" />
         <p className="text-xs text-amber-800 leading-relaxed">
           <strong>Medical disclaimer:</strong> {result.disclaimer} This AI tool is

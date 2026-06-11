@@ -13,9 +13,9 @@ interface RecentAppointmentsProps {
 }
 
 const statusStyles: Record<string, string> = {
-  scheduled: "bg-blue-100 text-blue-700",
-  completed: "bg-green-100 text-green-700",
-  cancelled: "bg-red-100 text-red-700",
+  scheduled: "bg-cyan-50 text-cyan-700 ring-1 ring-cyan-200",
+  completed: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+  cancelled: "bg-red-50 text-red-700 ring-1 ring-red-200",
 };
 
 export default function RecentAppointments({
@@ -24,7 +24,7 @@ export default function RecentAppointments({
   loading,
 }: RecentAppointmentsProps) {
   return (
-    <Card className="border-0 shadow-sm">
+    <Card>
       <CardHeader className="pb-3 flex flex-row items-center justify-between">
         <CardTitle className="text-base font-semibold">
           Recent Appointments
@@ -42,14 +42,14 @@ export default function RecentAppointments({
             <div key={i} className="h-14 bg-slate-100 rounded-lg animate-pulse" />
           ))
         ) : appointments.length === 0 ? (
-          <div className="text-center py-8 text-slate-400">
-            <Calendar className="w-8 h-8 mx-auto mb-2 opacity-30" />
-            <p className="text-sm">No appointments yet</p>
+          <div className="rounded-lg border border-dashed border-slate-200 bg-slate-50 py-8 text-center text-slate-500">
+            <Calendar className="w-8 h-8 mx-auto mb-2 text-slate-300" />
+            <p className="text-sm font-medium">No appointments yet</p>
           </div>
         ) : (
           appointments.map((appt) => (
             <Link key={appt.$id} href={`/appointments/${appt.$id}`}>
-              <div className="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer">
+              <div className="flex cursor-pointer items-center justify-between rounded-lg bg-slate-50 p-3 transition-colors hover:bg-cyan-50/70">
                 <div className="min-w-0">
                   <p className="font-medium text-sm text-slate-800 truncate">
                     {patientNames[appt.patient_id] ?? "Unknown Patient"}

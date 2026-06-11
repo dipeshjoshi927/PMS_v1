@@ -7,14 +7,14 @@ interface StatusBadgeProps {
 }
 
 const styles: Record<AppointmentStatus, string> = {
-  scheduled: "bg-blue-100 text-blue-700",
-  completed: "bg-green-100 text-green-700",
-  cancelled: "bg-red-100 text-red-700",
+  scheduled: "bg-cyan-50 text-cyan-700 ring-1 ring-cyan-200",
+  completed: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+  cancelled: "bg-red-50 text-red-700 ring-1 ring-red-200",
 };
 
 const dots: Record<AppointmentStatus, string> = {
-  scheduled: "bg-blue-500",
-  completed: "bg-green-500",
+  scheduled: "bg-cyan-500",
+  completed: "bg-emerald-500",
   cancelled: "bg-red-500",
 };
 

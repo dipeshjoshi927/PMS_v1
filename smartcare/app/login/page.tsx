@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Heart, Loader2, Eye, EyeOff } from "lucide-react";
+import { HeartPulse, Loader2, Eye, EyeOff, ShieldCheck, Activity, Stethoscope } from "lucide-react";
 
 export default function LoginPage() {
   const [email,    setEmail]    = useState("");
@@ -42,29 +42,61 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-slate-50 p-4">
+      <div className="mx-auto grid min-h-[calc(100vh-2rem)] w-full max-w-6xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        <section className="hidden lg:block">
+          <div className="max-w-xl">
+            <div className="mb-8 flex items-center gap-3">
+              <div className="rounded-lg bg-primary p-3 shadow-lg shadow-cyan-900/10">
+                <HeartPulse className="h-7 w-7 text-white" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold tracking-tight text-slate-950">SmartCare</h1>
+                <p className="text-sm font-medium text-slate-500">Enterprise patient management</p>
+              </div>
+            </div>
+            <h2 className="text-4xl font-bold tracking-tight text-slate-950">
+              Secure clinical operations, designed for focused care.
+            </h2>
+            <p className="mt-4 max-w-lg text-base leading-7 text-slate-600">
+              Manage patient records, appointments, prescriptions, reports, and AI-assisted insights from one calm workspace.
+            </p>
+            <div className="mt-8 grid max-w-lg grid-cols-3 gap-3">
+              {[
+                { icon: ShieldCheck, label: "Secure access" },
+                { icon: Activity, label: "Live workflow" },
+                { icon: Stethoscope, label: "Clinical ready" },
+              ].map(({ icon: Icon, label }) => (
+                <div key={label} className="clinical-panel p-4">
+                  <Icon className="mb-3 h-5 w-5 text-primary" />
+                  <p className="text-sm font-semibold text-slate-700">{label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="p-3 bg-blue-600 rounded-2xl shadow-lg shadow-blue-500/30">
-            <Heart className="w-7 h-7 text-white" />
+        <div className="mx-auto w-full max-w-md">
+        <div className="mb-8 flex items-center justify-center gap-3 lg:hidden">
+          <div className="rounded-lg bg-primary p-3 shadow-lg shadow-cyan-900/10">
+            <HeartPulse className="h-7 w-7 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white tracking-tight">SmartCare</h1>
-            <p className="text-blue-300 text-sm">Hospital Management System</p>
+            <h1 className="text-2xl font-bold tracking-tight text-slate-950">SmartCare</h1>
+            <p className="text-sm text-slate-500">Patient Management System</p>
           </div>
         </div>
 
-        <Card className="border-0 shadow-2xl">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold">Welcome back</CardTitle>
-            <CardDescription>Sign in to your account to continue</CardDescription>
+        <Card className="border-slate-200 bg-white/95 shadow-clinical backdrop-blur">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-2xl font-bold tracking-tight">Welcome back</CardTitle>
+            <CardDescription>Sign in to continue to the clinical workspace.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleLogin} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-5">
 
               {error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700" role="alert">
                   {error}
                 </div>
               )}
@@ -115,7 +147,7 @@ export default function LoginPage() {
 
               <p className="text-center text-sm text-muted-foreground">
                 Don&apos;t have an account?{" "}
-                <Link href="/register" className="text-blue-600 font-medium hover:underline">
+                <Link href="/register" className="font-semibold text-primary hover:underline">
                   Register here
                 </Link>
               </p>
@@ -124,10 +156,11 @@ export default function LoginPage() {
           </CardContent>
         </Card>
 
-        <p className="text-center text-xs text-slate-500 mt-6">
-          SmartCare &copy; {new Date().getFullYear()} — Secure Healthcare Management
+        <p className="mt-6 text-center text-xs text-slate-500">
+          SmartCare &copy; {new Date().getFullYear()} - Secure healthcare management
         </p>
 
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const otpStore = new Map<string, { code: string; expires: number }>();
+import { otpStore } from "@/lib/otp-store";
 
 export async function POST(req: NextRequest) {
   try {

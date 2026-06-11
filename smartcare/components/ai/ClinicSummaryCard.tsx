@@ -57,7 +57,7 @@ export default function ClinicSummaryCard({
 
       {/* Alerts */}
       {summary.alerts.length > 0 && (
-        <div className="p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3">
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
           <AlertTriangle className="w-4 h-4 text-red-600 mt-0.5 shrink-0" />
           <div>
             <p className="text-xs font-semibold text-red-700 uppercase tracking-wide mb-1">
@@ -71,7 +71,7 @@ export default function ClinicSummaryCard({
       )}
 
       {/* Overview */}
-      <Card className="border-0 shadow-sm">
+      <Card className="">
         <CardHeader className="pb-2">
           <CardTitle className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
             Executive Overview — {summary.period}
@@ -86,7 +86,7 @@ export default function ClinicSummaryCard({
 
       {/* Sections grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="border-0 shadow-sm">
+        <Card className="">
           <CardContent className="pt-5 space-y-5">
             <SummarySection
               title="Patient Insights"
@@ -105,7 +105,7 @@ export default function ClinicSummaryCard({
           </CardContent>
         </Card>
 
-        <Card className="border-0 shadow-sm">
+        <Card className="">
           <CardContent className="pt-5 space-y-5">
             <SummarySection
               title="Health Trends"

@@ -15,14 +15,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Heart, Loader2, Eye, EyeOff } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { HeartPulse, Loader2, Eye, EyeOff, Stethoscope, ShieldCheck, Headset, CheckCircle2 } from "lucide-react";
+
+const roles = [
+  {
+    value: "doctor",
+    title: "Doctor",
+    description: "Manage consultations, prescriptions, and clinical follow-up.",
+    icon: Stethoscope,
+  },
+  {
+    value: "admin",
+    title: "Admin",
+    description: "Oversee clinic operations, reporting, and team access.",
+    icon: ShieldCheck,
+  },
+  {
+    value: "receptionist",
+    title: "Receptionist",
+    description: "Coordinate registrations, schedules, and patient communication.",
+    icon: Headset,
+  },
+];
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
@@ -95,100 +110,127 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-slate-50 p-4">
+      <div className="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-5xl items-center justify-center">
+      <div className="w-full max-w-3xl">
 
-        <div className="flex items-center justify-center gap-3 mb-8">
-          <div className="p-3 bg-blue-600 rounded-2xl shadow-lg shadow-blue-500/30">
-            <Heart className="w-7 h-7 text-white" />
+        <div className="mb-8 flex items-center justify-center gap-3">
+          <div className="rounded-lg bg-primary p-3 shadow-lg shadow-cyan-900/10">
+            <HeartPulse className="h-7 w-7 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white tracking-tight">SmartCare</h1>
-            <p className="text-blue-300 text-sm">Hospital Management System</p>
+            <h1 className="text-2xl font-bold tracking-tight text-slate-950">SmartCare</h1>
+            <p className="text-sm text-slate-500">Patient Management System</p>
           </div>
         </div>
 
-        <Card className="border-0 shadow-2xl">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-xl font-bold">Create account</CardTitle>
-            <CardDescription>Register as a healthcare professional</CardDescription>
+        <Card className="border-slate-200 bg-white/95 shadow-clinical backdrop-blur">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-2xl font-bold tracking-tight">Create your workspace account</CardTitle>
+            <CardDescription>Choose your clinical role and complete your secure profile.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleRegister} className="space-y-4">
+            <form onSubmit={handleRegister} className="space-y-6">
 
               {error && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                <div className="rounded-md border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700" role="alert">
                   {error}
                 </div>
               )}
 
-              <div className="space-y-1.5">
-                <Label>Full Name</Label>
-                <Input
-                  placeholder="Dr. John Smith"
-                  value={form.name}
-                  onChange={(e) => set("name", e.target.value)}
-                  required
-                />
+              <div>
+                <Label className="mb-3 block">Select role</Label>
+                <div className="grid gap-3 md:grid-cols-3">
+                  {roles.map(({ value, title, description, icon: Icon }) => {
+                    const selected = form.role === value;
+                    return (
+                      <button
+                        key={value}
+                        type="button"
+                        onClick={() => set("role", value)}
+                        className={cn(
+                          "relative rounded-lg border bg-white p-4 text-left transition-all hover:border-primary/50 hover:bg-cyan-50/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
+                          selected
+                            ? "border-primary bg-cyan-50 shadow-sm"
+                            : "border-slate-200"
+                        )}
+                        aria-pressed={selected}
+                      >
+                        <div className="mb-3 flex items-center justify-between">
+                          <span className={cn("rounded-md p-2", selected ? "bg-primary text-white" : "bg-slate-100 text-slate-600")}>
+                            <Icon className="h-4 w-4" />
+                          </span>
+                          {selected && <CheckCircle2 className="h-5 w-5 text-primary" />}
+                        </div>
+                        <p className="font-semibold text-slate-950">{title}</p>
+                        <p className="mt-1 text-xs leading-5 text-slate-500">{description}</p>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
-              <div className="space-y-1.5">
-                <Label>Email Address</Label>
-                <Input
-                  type="email"
-                  placeholder="doctor@hospital.com"
-                  value={form.email}
-                  onChange={(e) => set("email", e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <Label>Phone Number</Label>
-                <Input
-                  placeholder="+977XXXXXXXXXX"
-                  value={form.phone}
-                  onChange={(e) => set("phone", e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <Label>Role</Label>
-                <Select value={form.role} onValueChange={(v) => set("role", v)}>
-                  <SelectTrigger>
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="doctor">Doctor</SelectItem>
-                    <SelectItem value="admin">Admin</SelectItem>
-                    <SelectItem value="receptionist">Receptionist</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-1.5">
-                <Label>Password</Label>
-                <div className="relative">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="field-group">
+                  <Label>Full Name</Label>
                   <Input
-                    type={showPass ? "text" : "password"}
-                    placeholder="Minimum 8 characters"
-                    value={form.password}
-                    onChange={(e) => set("password", e.target.value)}
+                    placeholder="Dr. John Smith"
+                    value={form.name}
+                    onChange={(e) => set("name", e.target.value)}
                     required
-                    minLength={8}
-                    className="pr-10"
+                    autoComplete="name"
                   />
-                  <button
-                    type="button"
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                    onClick={() => setShowPass(!showPass)}
-                  >
-                    {showPass
-                      ? <EyeOff className="w-4 h-4" />
-                      : <Eye className="w-4 h-4" />
-                    }
-                  </button>
+                </div>
+
+                <div className="field-group">
+                  <Label>Email Address</Label>
+                  <Input
+                    type="email"
+                    placeholder="doctor@hospital.com"
+                    value={form.email}
+                    onChange={(e) => set("email", e.target.value)}
+                    required
+                    autoComplete="email"
+                  />
+                </div>
+
+                <div className="field-group">
+                  <Label>Phone Number</Label>
+                  <Input
+                    placeholder="+977XXXXXXXXXX"
+                    value={form.phone}
+                    onChange={(e) => set("phone", e.target.value)}
+                    required
+                    autoComplete="tel"
+                  />
+                </div>
+
+                <div className="field-group">
+                  <Label>Password</Label>
+                  <div className="relative">
+                    <Input
+                      type={showPass ? "text" : "password"}
+                      placeholder="Minimum 8 characters"
+                      value={form.password}
+                      onChange={(e) => set("password", e.target.value)}
+                      required
+                      minLength={8}
+                      autoComplete="new-password"
+                      className="pr-10"
+                    />
+                    <button
+                      type="button"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition-colors hover:text-slate-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+                      onClick={() => setShowPass(!showPass)}
+                      aria-label={showPass ? "Hide password" : "Show password"}
+                    >
+                      {showPass
+                        ? <EyeOff className="w-4 h-4" />
+                        : <Eye className="w-4 h-4" />
+                      }
+                    </button>
+                  </div>
+                  <p className="text-xs text-slate-500">Use at least 8 characters.</p>
                 </div>
               </div>
 
@@ -199,7 +241,7 @@ export default function RegisterPage() {
 
               <p className="text-center text-sm text-muted-foreground">
                 Already have an account?{" "}
-                <Link href="/login" className="text-blue-600 font-medium hover:underline">
+                <Link href="/login" className="font-semibold text-primary hover:underline">
                   Sign in
                 </Link>
               </p>
@@ -208,6 +250,7 @@ export default function RegisterPage() {
           </CardContent>
         </Card>
 
+      </div>
       </div>
     </div>
   );

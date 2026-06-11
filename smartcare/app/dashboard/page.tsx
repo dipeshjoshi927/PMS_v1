@@ -72,13 +72,13 @@ export default function DashboardPage() {
         subtitle={format(new Date(), "EEEE, MMMM do yyyy")}
       />
 
-      <div className="p-6 lg:p-8 space-y-6">
+      <div className="clinical-page">
 
         {/* Risk banner */}
         <RiskAlertBanner highRiskCount={highRiskCount} />
 
         {/* Stats grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           <StatCard
             title="Total Patients"
             value={patients.length}
@@ -112,7 +112,7 @@ export default function DashboardPage() {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
           <div className="lg:col-span-2">
             <RecentAppointments
               appointments={appointments.slice(0, 6)}

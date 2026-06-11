@@ -18,7 +18,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPatients, createPatient, updatePatient } from "@/lib/patients";
 import { useToast } from "@/components/ui/use-toast";
-import { Plus, Search, Users, LayoutGrid, List } from "lucide-react";
+import { Plus, Search, LayoutGrid, List, UserRoundCheck } from "lucide-react";
 import type { Patient } from "@/types";
 
 type View = "grid" | "table";
@@ -79,10 +79,11 @@ export default function PatientsPage() {
   return (
     <DashboardLayout>
       <Header title="Patients" subtitle={`${patients.length} total patients`} />
-      <div className="p-6 lg:p-8 space-y-5">
+      <div className="clinical-page">
 
-        <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
-          <div className="relative flex-1 max-w-sm">
+        <div className="clinical-panel p-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          <div className="relative w-full lg:max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <Input
               className="pl-9"
@@ -91,13 +92,14 @@ export default function PatientsPage() {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className="flex items-center gap-2">
-            <div className="flex border rounded-lg overflow-hidden">
+          <div className="flex w-full items-center gap-2 sm:w-auto">
+            <div className="flex overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm">
               <button
                 onClick={() => setView("grid")}
+                aria-label="Grid view"
                 className={`p-2 transition-colors ${
                   view === "grid"
-                    ? "bg-slate-900 text-white"
+                    ? "bg-primary text-white"
                     : "bg-white text-slate-500 hover:bg-slate-50"
                 }`}
               >
@@ -105,9 +107,10 @@ export default function PatientsPage() {
               </button>
               <button
                 onClick={() => setView("table")}
+                aria-label="Table view"
                 className={`p-2 transition-colors ${
                   view === "table"
-                    ? "bg-slate-900 text-white"
+                    ? "bg-primary text-white"
                     : "bg-white text-slate-500 hover:bg-slate-50"
                 }`}
               >
@@ -116,13 +119,13 @@ export default function PatientsPage() {
             </div>
             <Dialog open={open} onOpenChange={handleOpenChange}>
               <DialogTrigger asChild>
-                <Button className="gap-2 shrink-0">
+                <Button className="shrink-0 gap-2">
                   <Plus className="w-4 h-4" /> Add Patient
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-lg">
+              <DialogContent className="sm:max-w-2xl">
                 <DialogHeader>
-                  <DialogTitle>
+                  <DialogTitle className="text-xl">
                     {editing ? "Edit Patient" : "Add New Patient"}
                   </DialogTitle>
                 </DialogHeader>
@@ -135,19 +138,22 @@ export default function PatientsPage() {
               </DialogContent>
             </Dialog>
           </div>
+          </div>
         </div>
 
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <Skeleton key={i} className="h-40 rounded-xl" />
+              <Skeleton key={i} className="h-40 rounded-lg" />
             ))}
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-20 text-slate-400">
-            <Users className="w-12 h-12 mx-auto mb-3 opacity-20" />
-            <p className="text-lg font-medium">No patients found</p>
-            <p className="text-sm mt-1">
+          <div className="empty-state">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-cyan-50 text-primary">
+              {search ? <Search className="h-6 w-6" /> : <UserRoundCheck className="h-6 w-6" />}
+            </div>
+            <p className="text-lg font-semibold text-slate-900">No patients found</p>
+            <p className="mt-1 text-sm">
               {search
                 ? "Try a different search term"
                 : "Add your first patient to get started"
@@ -155,7 +161,7 @@ export default function PatientsPage() {
             </p>
           </div>
         ) : view === "grid" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {filtered.map((p) => (
               <PatientCard key={p.$id} patient={p} />
             ))}

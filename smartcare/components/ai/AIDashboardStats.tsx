@@ -47,7 +47,7 @@ export default function AIDashboardStats({
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {cards.map(({ title, value, icon: Icon, bg, color }) => (
-        <Card key={title} className="border-0 shadow-sm">
+        <Card key={title} className="">
           <CardContent className="pt-5 pb-4">
             <div className="flex items-start justify-between">
               <div>
