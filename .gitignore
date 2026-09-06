@@ -1,0 +1,19 @@
+# Operating system files
+.DS_Store
+
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+
+# JavaScript dependencies and build output
+**/node_modules/
+**/.next/
+**/coverage/
+**/out/
+**/build/
+**/.turbo/
+
+# Logs and generated TypeScript metadata
+*.log
+*.tsbuildinfo

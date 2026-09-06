@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background:             204 43% 97%;
+    --foreground:             222 47% 13%;
+    --card:                   0 0% 100%;
+    --card-foreground:        222 47% 11%;
+    --popover:                0 0% 100%;
+    --popover-foreground:     222 47% 11%;
+    --primary:                196 82% 34%;
+    --primary-foreground:     0 0% 100%;
+    --secondary:              196 68% 93%;
+    --secondary-foreground:   198 72% 22%;
+    --muted:                  205 30% 94%;
+    --muted-foreground:       215 17% 42%;
+    --accent:                 166 58% 92%;
+    --accent-foreground:      166 72% 20%;
+    --destructive:            0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border:                 207 30% 86%;
+    --input:                  207 30% 86%;
+    --ring:                   196 82% 34%;
+    --radius:                 0.5rem;
+  }
+
+  .dark {
+    --background:             222.2 84% 4.9%;
+    --foreground:             210 40% 98%;
+    --card:                   222.2 84% 4.9%;
+    --card-foreground:        210 40% 98%;
+    --popover:                222.2 84% 4.9%;
+    --popover-foreground:     210 40% 98%;
+    --primary:                217.2 91.2% 59.8%;
+    --primary-foreground:     222.2 47.4% 11.2%;
+    --secondary:              217.2 32.6% 17.5%;
+    --secondary-foreground:   210 40% 98%;
+    --muted:                  217.2 32.6% 17.5%;
+    --muted-foreground:       215 20.2% 65.1%;
+    --accent:                 217.2 32.6% 17.5%;
+    --accent-foreground:      210 40% 98%;
+    --destructive:            0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border:                 217.2 32.6% 17.5%;
+    --input:                  217.2 32.6% 17.5%;
+    --ring:                   224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  .dark {
+    color-scheme: dark;
+  }
+
+  html:not(.dark) body {
+    background-image:
+      radial-gradient(circle at 92% -8%, rgb(186 230 253 / 0.6), transparent 30rem),
+      radial-gradient(circle at -8% 105%, rgb(204 251 241 / 0.55), transparent 28rem);
+  }
+  ::selection {
+    @apply bg-primary/15 text-slate-950;
+  }
+}
+
+@layer components {
+  .clinical-page {
+    @apply p-4 sm:p-6 lg:p-8 space-y-6;
+  }
+
+  .clinical-card {
+    @apply rounded-lg border border-slate-200/80 bg-white shadow-soft;
+  }
+
+  .clinical-panel {
+    @apply rounded-lg border border-slate-200/80 bg-white/95 shadow-sm;
+  }
+
+  .field-group {
+    @apply space-y-1.5;
+  }
+
+  .empty-state {
+    @apply rounded-lg border border-dashed border-slate-300 bg-white px-6 py-14 text-center text-slate-500;
+  }
+
+  .dark .clinical-card,
+  .dark .clinical-panel,
+  .dark .empty-state {
+    @apply border-slate-800 bg-slate-900;
+  }
+
+  html:not(.dark) .clinical-card,
+  html:not(.dark) .clinical-panel {
+    border-color: rgb(203 213 225 / 0.85);
+    box-shadow: 0 12px 30px -24px rgb(15 23 42 / 0.35), 0 1px 2px rgb(15 23 42 / 0.03);
+  }
+
+  html:not(.dark) .light-workspace {
+    background-image:
+      radial-gradient(circle at 88% -8%, rgb(186 230 253 / 0.38), transparent 28rem),
+      radial-gradient(circle at -8% 108%, rgb(204 251 241 / 0.32), transparent 26rem);
+  }
+
+  html:not(.dark) .light-auth-ambient {
+    background-image:
+      radial-gradient(circle at 90% 0%, rgb(186 230 253 / 0.48), transparent 30rem),
+      radial-gradient(circle at 0% 100%, rgb(204 251 241 / 0.38), transparent 25rem);
+  }
+
+  html:not(.dark) .app-header {
+    border-color: rgb(226 232 240 / 0.8);
+    background-color: rgb(255 255 255 / 0.85);
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.7);
+    backdrop-filter: blur(24px);
+  }
+
+  /* The application predates theme tokens in several feature views. These
+     targeted compatibility rules keep existing clinical content legible. */
+  .dark .bg-white,
+  .dark .bg-white\/95,
+  .dark .bg-slate-50,
+  .dark .bg-slate-50\/60 {
+    background-color: rgb(15 23 42);
+  }
+
+  .dark .text-slate-950,
+  .dark .text-slate-900 {
+    color: rgb(248 250 252);
+  }
+
+  .dark .text-slate-700,
+  .dark .text-slate-600 {
+    color: rgb(203 213 225);
+  }
+
+  .dark .text-slate-500,
+  .dark .text-slate-400 {
+    color: rgb(148 163 184);
+  }
+
+  .dark .border-slate-200,
+  .dark .border-slate-200\/80,
+  .dark .border-slate-100 {
+    border-color: rgb(30 41 59);
+  }
+
+  .dark .hover\:bg-slate-50:hover,
+  .dark .hover\:bg-slate-100:hover {
+    background-color: rgb(30 41 59);
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
